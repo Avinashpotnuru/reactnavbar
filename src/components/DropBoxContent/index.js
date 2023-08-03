@@ -5,12 +5,12 @@ import { store } from "../../App";
 const DropBoxContent = ({ data }) => {
   const { subTab } = useContext(store);
   //   console.log("subTab", subTab);
-  //   console.log("data", data);
+  console.log("data", data);
 
-  console.log(data);
+  // console.log(data);
 
-  const filterSubContent = data.filter((e) => e.title === subTab);
-  console.log("filterSubContent", filterSubContent);
+  const filterSubContent = data.filter((e, idx) => idx === subTab);
+  // console.log("filterSubContent", filterSubContent);
 
   return (
     <div className="dropboxdev">
