@@ -5,21 +5,46 @@ import Content from "./components/Content";
 import ImagesBlock from "./components/ImagesBlock";
 import DropBoxContent from "./components/DropBoxContent";
 import DropImageBoxContent from "./components/DropBoxImageContent";
+import { Routes, Route, Link } from "react-router-dom";
+import Block1 from "./components/Home";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import SubAbout from "./components/SubAbout";
+import SubHome from "./components/SubHome";
+import SubContact from "./components/SubContact";
 
 export const store = createContext();
 
 const navData = [
   {
     title: "HOME",
-    dropBoxItems: ["HOME block1", "HOME block2", "HOME block3"],
+    link: "home",
+    dropBoxItems: [
+      { title: "HOME block1", link: "home/hometab1" },
+      { title: "HOME block2", link: "home/hometab2" },
+      { title: "HOME block3", link: "home/hometab3" },
+    ],
   },
   {
     title: "ABOUT",
-    dropBoxItems: ["ABOUT block1", "ABOUT block2", "ABOUT block3"],
+    link: "about",
+
+    dropBoxItems: [
+      { title: "ABOUT block1", link: "about/abouttab1" },
+      { title: "ABOUT block2", link: "about/abouttab2" },
+      { title: "ABOUT block3", link: "about/abouttab3" },
+    ],
   },
   {
     title: "CONTACT",
-    dropBoxItems: ["CONTACT block1", "CONTACT block2", "CONTACT block3"],
+    link: "contact",
+
+    dropBoxItems: [
+      { title: "CONTACT block1", link: "contact/contacttab1" },
+      { title: "CONTACT block2", link: "contact/contacttab2" },
+      { title: "CONTACT block3", link: "contact/contacttab3" },
+    ],
   },
 ];
 
@@ -95,30 +120,34 @@ function App() {
         <div className="navbar">
           {navData.map((e, idx) => (
             <>
-              <h3
-                key={idx}
-                onClick={() => {
-                  setTabs(e.title);
-                  setDropDown(false);
+              <Link to={e.link}>
+                <h3
+                  key={idx}
+                  onClick={() => {
+                    setTabs(e.title);
+                    setDropDown(false);
 
-                  subTabHandler(idx);
-                }}
-              >
-                {e.title}
-              </h3>
+                    subTabHandler(idx);
+                  }}
+                >
+                  {e.title}
+                </h3>
+              </Link>
 
               {activeId === idx && (
                 <div className="dropbox">
                   {e.dropBoxItems.map((tab, idx) => (
-                    <p
-                      key={idx}
-                      onClick={() => {
-                        setDropDown(true);
-                        setSubTab(idx);
-                      }}
-                    >
-                      {tab}
-                    </p>
+                    <Link to={tab.link}>
+                      <p
+                        key={idx}
+                        onClick={() => {
+                          setDropDown(true);
+                          setSubTab(idx);
+                        }}
+                      >
+                        {tab.title}
+                      </p>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -142,7 +171,17 @@ function App() {
           ))}
         </div>
 
-        {filterData.map((item, idx) => (
+        <Routes>
+          <Route path="home" element={<Home />} />
+          <Route path="home/:hometab" element={<SubHome />} />
+
+          <Route path="about" element={<About />} />
+          <Route path="about/:abouttab" element={<SubAbout />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="contact/:contacttab" element={<SubContact />} />
+        </Routes>
+
+        {/* {filterData.map((item, idx) => (
           <div key={idx} className="subdiv">
             {!dropDown ? (
               <>
@@ -156,7 +195,7 @@ function App() {
               </>
             )}
           </div>
-        ))}
+        ))} */}
       </div>
     </store.Provider>
   );

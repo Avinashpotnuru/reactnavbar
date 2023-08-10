@@ -5,7 +5,7 @@ import { store } from "../../App";
 const DropBoxContent = ({ data }) => {
   const { subTab } = useContext(store);
   //   console.log("subTab", subTab);
-  console.log("data", data);
+  // console.log("data", data);
 
   // console.log(data);
 

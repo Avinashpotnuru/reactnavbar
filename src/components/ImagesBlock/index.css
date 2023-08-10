@@ -1,6 +1,28 @@
 .imagesBlock {
     width: 50%;
+    display: flex;
+    height: 100vh;
+    align-items: center;
 
 
     background-color: rgb(0, 200, 255);
+}
+
+/* .Carousel {
+    background-color: blue;
+    padding-top: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.alice-carousel__stage {
+    height: 400px !important;
+    background-color: chartreuse;
+    padding-top: 50% !important;
+
+} */
+
+.slider {
+    width: 80%;
+    margin: auto;
 }
